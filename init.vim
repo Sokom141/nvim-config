@@ -3,9 +3,6 @@ set nocompatible    " Disable compatibility to vi
 set showmatch       " Show matching
 set ignorecase      " Case insensitive
 set smartcase       " Don't ignore case when search string contains uppercase letters
-set background=dark
-set t_Co=256        " 256 colors
-set termguicolors
 set clipboard=unnamedplus   " Use system clipboard
 set completeopt=noinsert,menuone,noselect " Set behaviour of complete pop-up
 " menuone   -> menu will come up even if there is only one match
@@ -46,10 +43,15 @@ set signcolumn=number
 
 "set showtabline=2   " Always show tabs
 
+" Spelling
+"set spell
+set spellfile=~/.config/nvim/spell/en.utf-8.add
+
+
+
 let g:vimsyn_embed = 'l'    " lua syntax inside .vim files
 filetype plugin on
 filetype plugin indent on   " Allow auto-indenting depending on file type
-syntax on           " Syntax highlighting
 
 " Plugins managed by vim-plug
 " PlugInstall -> Install plugins
@@ -101,10 +103,22 @@ call plug#end()
 "let g:sonokai_style = 'default'
 "let g:sonokai_enable_italic = 1
 "let g:sonokai_disable_italic_comment = 1
+
+" You might have to force true color when using regular vim inside tmux as the
+" colorscheme can appear to be grayscale with "termguicolors" option enabled.
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+syntax on
+set termguicolors
+
+set background=dark
+set t_Co=256        " 256 colors
 let g:onedark_config = { 'style' : 'dark' }
 
 
-" Color Scheme
 "colorscheme sonokai
 colorscheme onedark
 
@@ -241,6 +255,8 @@ nnoremap <leader>db :bd<CR>
 
 " lua files
 lua <<EOF
+vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true })
+
 require("plugins.my-rust-tools")
 require("plugins.completion")
 require("plugins.treesitter")
