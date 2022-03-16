@@ -260,6 +260,6 @@ vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", 
 require("plugins.my-rust-tools")
 require("plugins.completion")
 require("plugins.treesitter")
-require("crates").setup()
+-- require("crates").setup()
 require("plugins.which-key")
 EOF
