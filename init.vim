@@ -95,6 +95,8 @@ Plug 'hrsh7th/cmp-path'         " Other usefull completion sources
 Plug 'hrsh7th/cmp-buffer'
 Plug 'simrat39/rust-tools.nvim' " To enable more of the features of rust-analyzer, such as inlay hints
 
+
+
 "Plug 'saecki/crates.nvim'       " Crates.io support
 Plug 'ryanoasis/vim-devicons'   " DevIcon support
 call plug#end()
