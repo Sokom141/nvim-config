@@ -256,12 +256,14 @@ map <F3> :bnext<CR>
 nnoremap <leader>db :bd<CR>
 
 " lua files
-lua <<EOF
-vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true })
 
-require("plugins.my-rust-tools")
-require("plugins.completion")
-require("plugins.treesitter")
--- require("crates").setup()
-require("plugins.which-key")
+lua <<EOF
+vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true })
+
+require('plugins.my-rust-tools')
+require('plugins.completion')
+require('plugins.which-key')
+require('plugins.treesitter')
+require('plugins.my-haskell')
 EOF
+
